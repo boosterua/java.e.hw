@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package hw;
-import hw.*;
 import java.math.BigInteger;
 
 public class HW {
@@ -34,18 +33,45 @@ public class HW {
         System.out.println("EuclideanGCD 240,66 = " + gcd.euclideanGCD(240, 96) );
         
         //Task05 / RSA
-        new Task05(5);
+//        new Task05(5);
         
         //Task06 / Figures.Area
-        new Task06();
+//        new Task06();
         
         //Task07.1 / Figures.Area
-        new Task07_1();
+        new FileDir();
         
-        //Task07.2 / Figures.Area
-        new Task07_2();
+
+        System.out.println("CAR-drive");
+        Car myCar = new Car().BuildACar();
+        myCar.drive();
+        myCar.setCarModel("Audi Q7");
+        myCar.refuel(10);
+        System.out.println(myCar.gasVolume);
+        myCar.drive();
+
+
+
+//
+//class A{
+//    int a;
+//    static B pb = new B();
+//    public void setA(int b){
+//        pb.setA(9);
+//    }    
+//}
+//
+//class B extends A{
+//    public void setA(int b){
+//        this.a = b;
+//        super.a = b-1;
+//    }
+//}
+
+
+
         
-        
+      /*  
         
         LinkedList A = new LinkedList();
         A.insertLast( "1");
@@ -58,7 +84,7 @@ public class HW {
         A.printList();
         System.out.println("*REV:");
         A.printReverseList();
-        
+       */ 
         
         
     }

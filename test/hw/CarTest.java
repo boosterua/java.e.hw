@@ -5,6 +5,7 @@
  */
 package hw;
 
+//import old.Car;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -37,86 +38,46 @@ public class CarTest {
     public void tearDown() {
     }
 
-    /**
-     * Test of BuildACar method, of class Car.
-     */
-    @Test
-    public void testBuildACar() {
-        System.out.println("BuildACar");
-        Car instance = new Car();
-        Car expResult = null;
-        Car result = instance.BuildACar();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+    
 
     /**
      * Test of refuel method, of class Car.
      */
     @Test
-    public void testRefuel() {
+    public void testRefuel() { //+testGetGasVolume
         System.out.println("refuel");
-        int volume = 0;
-        Car instance = new Car();
-        instance.refuel(volume);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        int volume = 10;
+        Car car = new Car().BuildACar();
+        car.refuel(volume);
+        assertEquals(car.getGasVolume(),volume);
+       
+        int volume2 = 0;
+        Car car2 = new Car().BuildACar();
+        car2.refuel(volume2);
+        assertEquals(car2.getGasVolume(),volume2);
+
     }
 
-    /**
-     * Test of setCarModel method, of class Car.
-     */
-    @Test
-    public void testSetCarModel() {
-        System.out.println("setCarModel");
-        String model = "";
-        Car instance = new Car();
-        instance.setCarModel(model);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
 
     /**
      * Test of getCarModel method, of class Car.
      */
     @Test
-    public void testGetCarModel() {
+    public void testGetSetCarModel() {
         System.out.println("getCarModel");
-        Car instance = new Car();
-        String expResult = "";
+        // Test 1 - Null
+        Car instance = new Car().BuildACar();
+        String expResult = null;
         String result = instance.getCarModel();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        // Test2 - Name
+        expResult = "Audi Q7";
+        instance.setCarModel(expResult);
+        result = instance.getCarModel();
+        assertEquals(expResult, result);        
     }
 
-    /**
-     * Test of getGasVolume method, of class Car.
-     */
-    @Test
-    public void testGetGasVolume() {
-        System.out.println("getGasVolume");
-        Car instance = new Car();
-        int expResult = 0;
-        int result = instance.getGasVolume();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
 
-    /**
-     * Test of setGasVolume method, of class Car.
-     */
-    @Test
-    public void testSetGasVolume() {
-        System.out.println("setGasVolume");
-        int delta = 0;
-        Car instance = new Car();
-        instance.setGasVolume(delta);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
 
     /**
      * Test of changeTire method, of class Car.
@@ -124,11 +85,27 @@ public class CarTest {
     @Test
     public void testChangeTire() {
         System.out.println("changeTire");
-        int nr = 0;
-        Car instance = new Car();
-        instance.changeTire(nr);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Integer nr = 3;
+        Car instance = new Car().BuildACar();
+        Integer tireChanged = instance.changeTire(nr);
+        assertEquals(nr, tireChanged);
+
+        nr = 5;
+        tireChanged = instance.changeTire(nr);
+        assertEquals(0, (int)tireChanged);
+        
+        nr = 0;
+        tireChanged = instance.changeTire(nr);
+        assertEquals(nr, tireChanged);
+        
+        nr = -1;
+        tireChanged = instance.changeTire(nr);
+        assertEquals(0, tireChanged.intValue());
+
+        nr = null;
+        tireChanged = instance.changeTire(nr);
+        assertEquals(0, tireChanged.intValue());
+
     }
 
     /**
@@ -136,11 +113,24 @@ public class CarTest {
      */
     @Test
     public void testDrive() {
-        System.out.println("drive");
-        Car instance = new Car();
-        instance.drive();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        System.out.println("Car::drive");
+        Car newCar = new Car();
+        Car myCar = newCar.BuildACar();
+            myCar = newCar.BuildACar(); // Test for duplicate buildAcar constr        
+        myCar.drive();
+        
+        myCar.setCarModel("Audi Q7");
+        myCar.refuel(20);
+        myCar.refuel(5);
+        assertEquals(25, myCar.getGasVolume());
+        myCar.drive();
+        assertEquals(myCar.state, "Driving");
+        myCar.changeTire(1); 
+        myCar.drive();
+        assertEquals(myCar.state, "Driving");
+        myCar.stop();
+        assertEquals(myCar.state, "Stopped");
+        
     }
     
 }
