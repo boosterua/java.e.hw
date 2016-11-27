@@ -36,7 +36,6 @@ package hw;
 
         
         public Integer changeTire(Integer nr){
-            System.out.println("TRying to change Tire:"+nr);
             try{ //System.out.println(nr);
                 return  wheels[nr-1].changeTire()+1;
             } catch (Exception e){
