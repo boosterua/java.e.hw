@@ -4,7 +4,6 @@ package hw;
         String carModel;
         public int gasVolume;
         Wheel[] wheels = new Wheel[4];
-        Engine engine;
         abstract public Integer changeTire(Integer ww);
         abstract public void drive();
         
@@ -17,34 +16,39 @@ package hw;
         }
     }
     
-    public class Car extends Vehicle{
-        public static int wheelId = 0;
-        private int newCarInitialized = 0;
-        public String state = "";
+
+
+    class Car extends Vehicle{
         
-        Car BuildACar(){
-            if(newCarInitialized++==1) return this;
+        public static int wheelId = 0;
+        public String state = "";
+        Engine engine;
+        
+        public Car(){
+            System.out.println("newWheel="+0);
+            engine = new Engine();
             for (int i=0; i < wheels.length; i++){
-                wheels[i] = new Wheel();
+                wheels[i] = new Wheel(i);
             }
-            this.engine = new Engine();
-            return this;
         }
         
+
+
+        
         public Integer changeTire(Integer nr){
+            System.out.println("TRying to change Tire:"+nr);
             try{ //System.out.println(nr);
-                wheels[nr-1].changeTire();
-                return (nr);                
+                return  wheels[nr-1].changeTire()+1;
             } catch (Exception e){
                 System.out.println("Couldn't change the tire. Can't drive further. Please call your service company.");
-                //throw e;
+//                throw e;
             }
             return 0;
         }
         
         public void drive(){
             state = "Driving";
-            engine.drive();
+            gasVolume = engine.drive(gasVolume);
         }
         
         public void stop(){
@@ -68,29 +72,33 @@ package hw;
 
     }
     
-    class Wheel extends Car{
-        int wheel;
-        public Wheel() {
-            wheelId++;
-            System.out.println("New wheel produced and "+ wheelId +" assembled.");
-            this.wheel=wheelId;
+    class Wheel {
+        private int wheelId;
+        public Wheel(int id) {
+            wheelId = id;
+            System.out.println("New wheel "+ id +" produced and assembled.");
         }
         public int changeTire(){
-            System.out.println("Tire nr "+ this.wheel + " has been changed! Let's drive on ;)");
-            return wheel;
+            System.out.println("Tire for wheel id "+ this.wheelId + " has been changed! Let's drive on ;)");
+            return this.wheelId;
         }
     }
     
-    class Engine extends Car{
+    class Engine {
         public int enigineId = 0;
+        public String state = "";
         Engine(){
             System.out.println("New engine installed.");
             this.enigineId++;
         }
-        public void drive(){
-            state = "Engine  Started";
+        public int drive(int gasVolume){
+            state = "Engine  Started. Gas: " + gasVolume;
+            for (int v = gasVolume; v>0; v--){
+                System.out.print(v+"->");
+                gasVolume--;
+            }
+            return gasVolume;
         }
-        
         public void stop(){
             state = "Engine Stopped";            
         }
