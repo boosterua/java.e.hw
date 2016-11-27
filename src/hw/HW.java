@@ -43,12 +43,12 @@ public class HW {
         
 
         System.out.println("CAR-drive");
-        Car myCar = new Car().BuildACar();
+        Car myCar = new Car();
         myCar.drive();
         myCar.setCarModel("Audi Q7");
         myCar.refuel(10);
-        System.out.println(myCar.gasVolume);
         myCar.drive();
+        myCar.changeTire(2);
 
 
 
