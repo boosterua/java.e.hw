@@ -47,14 +47,14 @@ public class CarTest {
     public void testRefuel() { //+testGetGasVolume
         System.out.println("refuel");
         int volume = 10;
-        Car car = new Car().BuildACar();
+        Car car = new Car();
         car.refuel(volume);
-        assertEquals(car.getGasVolume(),volume);
+        assertEquals(volume, car.getGasVolume());
        
         int volume2 = 0;
-        Car car2 = new Car().BuildACar();
+        Car car2 = new Car();
         car2.refuel(volume2);
-        assertEquals(car2.getGasVolume(),volume2);
+        assertEquals(volume2, car2.getGasVolume());
 
     }
 
@@ -66,7 +66,7 @@ public class CarTest {
     public void testGetSetCarModel() {
         System.out.println("getCarModel");
         // Test 1 - Null
-        Car instance = new Car().BuildACar();
+        Car instance = new Car();
         String expResult = null;
         String result = instance.getCarModel();
         assertEquals(expResult, result);
@@ -86,7 +86,7 @@ public class CarTest {
     public void testChangeTire() {
         System.out.println("changeTire");
         Integer nr = 3;
-        Car instance = new Car().BuildACar();
+        Car instance = new Car();
         Integer tireChanged = instance.changeTire(nr);
         assertEquals(nr, tireChanged);
 
@@ -115,8 +115,8 @@ public class CarTest {
     public void testDrive() {
         System.out.println("Car::drive");
         Car newCar = new Car();
-        Car myCar = newCar.BuildACar();
-            myCar = newCar.BuildACar(); // Test for duplicate buildAcar constr        
+        Car myCar = newCar;
+            myCar = newCar; // Test for duplicate buildAcar constr        
         myCar.drive();
         
         myCar.setCarModel("Audi Q7");
@@ -130,6 +130,11 @@ public class CarTest {
         assertEquals(myCar.state, "Driving");
         myCar.stop();
         assertEquals(myCar.state, "Stopped");
+        
+        System.out.println("***************");
+        myCar.refuel(5);
+        myCar.drive();
+        System.out.println(myCar.state);
         
     }
     
