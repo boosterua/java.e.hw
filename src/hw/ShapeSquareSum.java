@@ -1,45 +1,43 @@
 package hw;
 
-public class ShapeSquareSum extends Shape{
-    private String elements=""; // Description of each elem with its sizes and params
-    private Shape[] shapes;
+    abstract class Shape {
 
-    ShapeSquareSum(Shape ... shapes){
+    public Shape(Shape ... shapes) {
         this.shapes = shapes;
     }
     
-    public double sumArea(){
-        double area = 0;
-        for (Shape s:shapes){
-            area += s.getArea();
-            elements += s.getDescr()+"; ";
-        }
-        return area;
+    public Shape() {
     }
     
-    @Override
-    public double getArea(){ return sumArea();}
-
-    @Override
-    public String getDescr(){
-        return elements;
-    }
-}
-
-    abstract class Shape {
         public double area = 0;
         public String name = "";
+        private static String elements=""; // Description of each elem with its sizes and params
+        private Shape[] shapes;        
         //public abstract double sumArea(Shape... shapes);
         public abstract double getArea();
-        public abstract String getDescr();
+
+        public String getDescr(){
+            return elements;
+        }
+
+        public static double sumArea(Shape ... shapes){
+            double area = 0;
+            if (shapes==null || shapes.length==0) return 0;
+            for (Shape s:shapes){
+                if(s==null) continue;
+                area += s.getArea();
+                elements += s.getDescr()+"; ";
+            }
+            return area;
+        }
     }
-    
+
     class Trapezium extends Shape{
         double a,b,h;
         Trapezium(double top, double bottom, double height){
-            this.a = top; // topside
-            this.b = bottom; // bottom side
-            this.h = height; // height
+            this.a = Math.abs(top); // topside
+            this.b = Math.abs(bottom); // bottom side
+            this.h = Math.abs(height); // height
         };
         
         @Override
@@ -48,7 +46,7 @@ public class ShapeSquareSum extends Shape{
         }
         
         @Override
-        public double getArea(){
+        public double getArea(){ // Lazy calc
             area = ( a + b ) / 2 * h ; 
             return area;
         }
@@ -57,7 +55,7 @@ public class ShapeSquareSum extends Shape{
     class Circle extends Shape {
         double radius = 0;
         Circle (double r){
-            radius = r;    // System.out.println("New Circle radius=" + r );
+            radius = Math.abs(r);    // System.out.println("New Circle radius=" + r );
         }
         
         @Override
@@ -77,9 +75,9 @@ public class ShapeSquareSum extends Shape{
     class Triangle extends Shape {
         double s1, s2, s3;
         Triangle (double s1, double s2, double s3){
-            this.s1 = s1;
-            this.s2 = s2;
-            this.s3 = s3;
+            this.s1 = Math.abs(s1);
+            this.s2 = Math.abs(s2);
+            this.s3 = Math.abs(s3);
         }
 
         @Override
