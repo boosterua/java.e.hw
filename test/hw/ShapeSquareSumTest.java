@@ -50,17 +50,57 @@ public class ShapeSquareSumTest {
         Circle r2 = new Circle(90);
         Triangle tr = new Triangle(100,200,150);
         Trapezium tz = new Trapezium(200,300,10);
-        Shape all_shapes = new ShapeSquareSum(r1, r2, tr, tz);
 
         double expResult = 66624.67;
-        double result = all_shapes.getArea();
+        double result = Shape.sumArea(r1, r2, tr, tz);
         assertEquals(expResult, result, 0.001);
-        System.out.println(all_shapes.getDescr());
 
-//        for (Shape k: new Shape[]{r1,r2,tr,tz})
-//            System.out.println(k.getDescr());        
+        for (Shape k: new Shape[]{r1,r2,tr,tz})
+            System.out.println(k.getDescr());        
         
+        //      as an example, Test trapezium for boudary values (null obj, 0 sides, negative values);
+        tz = new Trapezium(0,0,0);
+        expResult = 0;
+        result = Shape.sumArea(tz);
+        assertEquals(expResult, result, 0.001);
 
+        tz = null;
+        expResult = 0;
+        result = Shape.sumArea(tz);
+        assertEquals(expResult, result, 0.001);
+
+        tz = new Trapezium(-200,-300,-10);
+        expResult = 2500;
+        result = Shape.sumArea(tz);
+        assertEquals(expResult, result, 0.001);        
+
+    }
+    
+
+
+    /**
+     * Test of getArea method, of class Trapezium.
+     */
+    @Test
+    public void testGetArea() {
+        System.out.println("getArea");
+        Trapezium instance = new Trapezium(20, 30, 0);
+        Double expResult = 0d;
+        Double result = instance.getArea();
+        assertEquals(expResult, result, 1e-10);
+   
+        instance = new Trapezium(20,30,40);
+        expResult = 1000d;
+        result = instance.getArea();
+        assertEquals(expResult, result, 1e-10);
+        
+        System.out.println("getDescr");
+        String descr = instance.getDescr();
+        System.out.println(descr);
+        assertEquals("Trapezium(20.00,30.00,40.00)=1000.00", descr);
+          
+           
+       
     }
 
     
