@@ -2,19 +2,18 @@ package hw;
 
     abstract class Shape {
 
-    public Shape(Shape ... shapes) {
-        this.shapes = shapes;
-    }
-    
-    public Shape() {
-    }
-    
         public double area = 0;
         public String name = "";
         private static String elements=""; // Description of each elem with its sizes and params
         private Shape[] shapes;        
-        //public abstract double sumArea(Shape... shapes);
         public abstract double getArea();
+        
+        public Shape(Shape ... shapes) {
+            this.shapes = shapes;
+        }
+
+        public Shape() {
+        }
 
         public String getDescr(){
             return elements;
@@ -55,12 +54,11 @@ package hw;
     class Circle extends Shape {
         double radius = 0;
         Circle (double r){
-            radius = Math.abs(r);    // System.out.println("New Circle radius=" + r );
+            radius = Math.abs(r);
         }
         
         @Override
         public double getArea(){
-            // System.out.println("getSq in Circle. R=" + radius);
             area =  radius * radius  *  Math.PI;
             return (double) area;
         }
