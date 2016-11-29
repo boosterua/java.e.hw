@@ -73,7 +73,11 @@ public class ShapeSquareSumTest {
         expResult = 2500;
         result = Shape.sumArea(tz);
         assertEquals(expResult, result, 0.001);        
-
+        
+        tr = new Triangle (-100,-200,-150);
+        expResult = 7261.84;
+        result = Shape.sumArea(tr);
+        assertEquals(expResult, result, 0.01);
     }
     
 
