@@ -16,8 +16,6 @@ package hw;
         }
     }
     
-
-
     class Car extends Vehicle{
         
         public static int wheelId = 0;
@@ -96,6 +94,7 @@ package hw;
                 System.out.print(v+"->");
                 gasVolume--;
             }
+            System.out.println(".");
             return gasVolume;
         }
         public void stop(){

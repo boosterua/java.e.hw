@@ -50,7 +50,8 @@ public class HW {
         myCar.drive();
         myCar.changeTire(2);
 
-
+        System.out.println((long)Double.POSITIVE_INFINITY);    
+        System.out.println((long)Double.NEGATIVE_INFINITY);    
 
 //
 //class A{
