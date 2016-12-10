@@ -22,23 +22,7 @@ public class CarTest {
     public CarTest() {
     }
     
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
-    }
 
-    
 
     /**
      * Test of refuel method, of class Car.
@@ -131,7 +115,6 @@ public class CarTest {
         myCar.stop();
         assertEquals(myCar.state, "Stopped");
         
-        System.out.println("***************");
         myCar.refuel(5);
         myCar.drive();
         System.out.println(myCar.state);
