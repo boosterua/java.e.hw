@@ -1,6 +1,6 @@
 package hw;
 import java.util.ArrayList;
-import java.util.Comparator;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -9,60 +9,77 @@ import java.util.List;
  * элементы некоторого класса или его наследников методом Quicksort,
  * сравнение элементов осуществлять с помощью Comparator
  * @param <E>
- * @param <Comparator>
  */
 
 public class  GenericsSortMyClass <E extends Comparable<E>, MyGenClass> {
-    int i=-1;
-    int j=0;
-    int pivot;
-    public List <E> list = new ArrayList();
-    
+
+    private List <E> list = new ArrayList<>();
+
+    GenericsSortMyClass(){
+    }
+
+    public void addValue(E val){
+        list.add(val);
+    }
+
     public void sort(List <E> list){
         this.list = list;
         sort();
     }
 
-    public void sort(){
-        if(list==null || list.isEmpty()) return;
-        int max = list.size();  // System.out.println("MAX:"+max);
+    public List<E> sort(){
+        if(list==null || list.isEmpty())
+            return Collections.emptyList();
+        int max = list.size();
         quickSort(0, max - 1);
+        return list;
     }
 
+
     private void quickSort(int a, int b){
-        int i = a; int j = b;
+        int i = a;
+        int j = b;
         E pivot = list.get(a + (b-a)/2);
         while (i<=j){
-              while (list.get(i).compareTo(pivot) < 0) i++;
-              while (list.get(j).compareTo(pivot) > 0) j--;
+              while (list.get(i).compareTo(pivot) < 0)
+                  i++;
+              while (list.get(j).compareTo(pivot) > 0)
+                  j--;
             if (i<=j) {
                 swap(i ,j);
                 i++;
                 j--;
             }
         }
-        if (a < j) quickSort(a, j);
-        if (i < b) quickSort(i, b);
+        if (a < j)
+            quickSort(a, j);
+        if (i < b)
+            quickSort(i, b);
     }
 
     private void swap(int i, int j){
-        if (i==j) return;
+        if (i==j)
+            return;
         E t = list.get(i);
         list.set(i, list.get(j));
         list.set(j, t);
     }
 
     public void initializeWithArray(E[] arr){
-        for (E el: arr)
-            list.add(el);
+        Collections.addAll(list, arr);
     }
+    public void printList(){
+        System.out.println(list);
+    }
+    public List<E> getList(){
+        return this.list;
+    }
+
     
     public static void main(String[] args) {
         // * TEST:
         GenericsSortMyClass sorter = new GenericsSortMyClass();
-        Integer[] test = { 5, 5, 6, 6, 4, 4, 5, 5, 4, 4, 6, 6, 5, 5 };
-        for (int t: test)
-            sorter.list.add(t);
+        sorter.initializeWithArray(new Integer[] { 5, 5, 6, 6, 4, 4, 5, 5, 4, 4, 6, 6, 5, 5 });
         sorter.sort(sorter.list);
         System.out.println(sorter.list);
         
@@ -75,16 +92,14 @@ class MyGenClass implements Comparable {
     Object o;
     Integer id;
     String name;
-    
+
     MyGenClass(Object o){
         this.o = o;
     }
     MyGenClass(Integer id){
         this.id = id;
     }
-    MyGenClass(String name){
-        this.name = name;
-    }
+    MyGenClass(String name){ this.name = name; }
     MyGenClass(Integer id, String name){
         this.name = name;
         this.id = id;
@@ -97,11 +112,14 @@ class MyGenClass implements Comparable {
     }
     
     @Override
-    public boolean equals(Object o){
-        if (!(o instanceof MyGenClass))
-            return false;
-        return this.equals(o);
+    public boolean equals(Object o) {
+        return o instanceof MyGenClass && this.equals(o);
     }
+    @Override
+    public int hashCode(){
+        return (this.o.hashCode() + this.id + this.name.hashCode());
+    }
+
     @Override
     public String toString(){
         return this.id.toString(); // + this.name.toUpperCase()

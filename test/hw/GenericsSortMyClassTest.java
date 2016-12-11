@@ -8,21 +8,19 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class GenericsSortMyClassTest {
-    private int[] numbers;
-    private final static int SIZE = 7;
-    private final static int MAX = 20;
+    private final static int SIZE = 12;
+    private final static int MAX = 99;
     private GenericsSortMyClass sorter = new GenericsSortMyClass();
-    private List list = sorter.list;
 
 
     @Before
     public void setUp() throws Exception {
-        numbers = new int[SIZE];
+        int[] numbers = new int[SIZE];
         Random generator = new Random();
         for (int i = 0; i < numbers.length; i++) {
             numbers[i] = generator.nextInt(MAX);
             MyGenClass a = new MyGenClass(numbers[i]);
-            list.add(a);
+            sorter.addValue(a);
         }
     }
 
@@ -49,21 +47,18 @@ public class GenericsSortMyClassTest {
 
     @Test
     public void testQuickSort() {
-        System.out.println(list);
+        sorter.printList();
         long startTime = System.currentTimeMillis();
-
-        GenericsSortMyClass sorter = new GenericsSortMyClass();
-        sorter.sort(list);
-
+        sorter.sort();
         long stopTime = System.currentTimeMillis();
         long elapsedTime = stopTime - startTime;
         System.out.println("Quicksort " + elapsedTime);
 
-        if (!validate(list)) {
+        if (!validate(sorter.getList())) {
             fail("List failed to sort");
         }
         System.out.println("testQuickSort (Random) case, Array sorted:");
-        printResult(sorter.list);
+        printResult(sorter.getList());
     }
 
     @Test
@@ -71,15 +66,15 @@ public class GenericsSortMyClassTest {
         GenericsSortMyClass sorter = new GenericsSortMyClass();
         int[] test = { 5, 5, 6, 6, 4, 4, 5, 5, 4, 4, 6, 6, 5, 5 };
         for (int t: test)
-            sorter.list.add(new MyGenClass(t));
-        System.out.println(sorter.list);
-        sorter.sort(sorter.list);
+            sorter.addValue(new MyGenClass(t));
+        sorter.printList();
+        sorter.sort();
         
-        if (!validate(sorter.list)) {
+        if (!validate(sorter.getList())) {
             fail("Failed. List is unsorted.");
         }
         System.out.println("testSpecial case, Array sorted:");
-        printResult(sorter.list);
+        sorter.printList();
     }
 
 
@@ -97,8 +92,7 @@ public class GenericsSortMyClassTest {
     }
 
     private void printResult(List<?> numbers) {
-        for (int i = 0; i < numbers.size(); i++)
-            System.out.print("[" + numbers.get(i) + "]");
+        for (Object number : numbers) System.out.print("[" + number + "]");
         System.out.println();
     }
 
