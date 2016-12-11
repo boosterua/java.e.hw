@@ -68,18 +68,18 @@ public class ListJoinSort<E extends Worker> {
 
     public static void main(String[] args) {
 
-        List<Worker> company1 = new ArrayList<>();
-            company1.add(new Worker("John", "Leager", 1234567890));
-            company1.add(new Worker("Greg", "Mouse", 1334567890));
-            company1.add(new Worker("Kevin", "Eaton", 1434567890));
-
-        List<Worker> company2 = new ArrayList<>();
-            company1.add(new Worker("Gary", "Winter", 1934567890));
-            company1.add(new Worker("Ivan", "Kanicky", 1834567890));
-            company1.add(new Worker("Phillip", "Lenon", 1734567890));
-
-        List <Worker> list = new ListJoinSort().listJoin(company1, company2);
-        System.out.println(list);
+//        List<Worker> company1 = new ArrayList<>();
+//            company1.add(new Worker("John", "Leager", 1234567890));
+//            company1.add(new Worker("Greg", "Mouse", 1334567890));
+//            company1.add(new Worker("Kevin", "Eaton", 1434567890));
+//
+//        List<Worker> company2 = new ArrayList<>();
+//            company1.add(new Worker("Gary", "Winter", 1934567890));
+//            company1.add(new Worker("Ivan", "Kanicky", 1834567890));
+//            company1.add(new Worker("Phillip", "Lenon", 1734567890));
+//
+//        List <Worker> list = new ListJoinSort().listJoin(company1, company2);
+//        System.out.println(list);
     }
 
 
@@ -99,7 +99,7 @@ class Worker implements Comparable<Worker>{
     }
 
     public String name(){
-        return this.firstName+" "+this.lastName;
+        return this.firstName+" "+this.lastName.toUpperCase();
 
     }
 

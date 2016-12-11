@@ -4,7 +4,10 @@
  * and open the template in the editor.
  */
 package hw;
+import java.lang.reflect.Array;
 import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.List;
 
 public class HW {
 
@@ -51,7 +54,14 @@ public class HW {
         myCar.changeTire(2);
 
         System.out.println((long)Double.POSITIVE_INFINITY);    
-        System.out.println((long)Double.NEGATIVE_INFINITY);    
+        System.out.println((long)Double.NEGATIVE_INFINITY);
+
+//        List<Integer> a = new ArrayList();
+//        a.add(2);
+//        a.add(3);
+//        a.add(1,5);
+//        System.out.println(a);
+
 
 //
 //class A{

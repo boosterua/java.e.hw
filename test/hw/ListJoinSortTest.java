@@ -33,11 +33,6 @@ class ListJoinSortTest {
         }
     }
 
-
-
-
-
-
     @Test
     public void testNull() {
         ListJoinSort sorter = new ListJoinSort();
@@ -55,7 +50,7 @@ class ListJoinSortTest {
             Thread.currentThread().getStackTrace();
         }
         companyJoined = sorter.listJoin(companyEmpty,companyEmpty);
-        System.out.println(companyJoined);
+        printResult(companyJoined);
     }
 
     @Test
@@ -99,6 +94,24 @@ class ListJoinSortTest {
         }
         System.out.println("testQuickSort (Random) case, Array sorted:");
         printResult(sorter.getList());
+
+
+
+        company1 = new ArrayList<>();
+        company1.add(new Worker("John", "Leager", 1234567890));
+        company1.add(new Worker("Greg", "Mouse", 1334567890));
+        company1.add(new Worker("Kevin", "Eaton", 1434567890));
+
+        company2 = new ArrayList<>();
+        company1.add(new Worker("Gary", "Winter", 1934567890));
+        company1.add(new Worker("Ivan", "Kanicky", 1834567890));
+        company1.add(new Worker("Phillip", "Lenon", 1734567890));
+        List <Worker> list = new ListJoinSort().listJoin(company1, company2);
+        if (!validate(list)) {
+            fail("List failed to sort");
+        }
+        printResult(list);
+
     }
 
 
@@ -113,7 +126,7 @@ class ListJoinSortTest {
     }
 
     private void printResult(List<?> numbers) {
-        for (Object number : numbers) System.out.print("[" + number + "]");
+        for (Object number : numbers) System.out.print("[" + number + "]\n");
         System.out.println();
     }
 
