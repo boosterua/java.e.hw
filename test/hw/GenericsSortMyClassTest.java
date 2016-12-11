@@ -9,7 +9,7 @@ import static org.junit.Assert.*;
 
 public class GenericsSortMyClassTest {
     private final static int SIZE = 12;
-    private final static int MAX = 99;
+    private final static int MAX = 98;
     private GenericsSortMyClass sorter = new GenericsSortMyClass();
 
 
