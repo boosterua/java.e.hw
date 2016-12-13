@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * Created by tonchief on 12/12/2016.
  */
-class PrioQTest {
+class _15_PrioQTest {
     //@org.junit.jupiter.api.Test
 
 

@@ -9,7 +9,7 @@ import java.util.Random;
 
 import static org.junit.Assert.fail;
 
-class ListJoinSortTest {
+class _14_ListJoinSortTest {
 
 
     private final static int SIZE1 = 12;
@@ -17,7 +17,7 @@ class ListJoinSortTest {
     private final static int MAX = 998;
     private List<Worker> company1;
     private List<Worker> company2;
-    private List companyJoined;
+    private List<Worker> companyJoined;
 
 
     @Before
@@ -84,7 +84,7 @@ class ListJoinSortTest {
         }
         ListJoinSort sorter = new ListJoinSort();
         long startTime = System.currentTimeMillis();
-        companyJoined = sorter.listJoin(company1, company2);
+        sorter.listJoin(company1, company2);
         long stopTime = System.currentTimeMillis();
         long elapsedTime = stopTime - startTime;
         System.out.println("Quicksort " + elapsedTime);

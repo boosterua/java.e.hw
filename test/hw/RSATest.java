@@ -9,7 +9,8 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import junit.framework.Assert;
+
+import hw.RSA;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
