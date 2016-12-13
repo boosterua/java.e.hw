@@ -11,7 +11,7 @@ import java.util.*;
 public class ListJoinSort<E extends Worker> {
     private List<E> listJ;
 
-    public List<E> listJoin(List<E> list01, List<E> list02){
+    public List<E> listJoin(List<? extends E> list01, List<? extends E> list02){
         if (list01==null || list02==null || (list01.isEmpty() && list02.isEmpty())){
             listJ = new ArrayList();
             return listJ;
@@ -27,7 +27,7 @@ public class ListJoinSort<E extends Worker> {
         return listJ;    */
     }
 
-    public List<E> getList(){
+    List<E> getList(){
         return this.listJ;
     }
 
@@ -114,20 +114,6 @@ class Worker implements Comparable<Worker>{
     }
 }
 
-
-//class Custom <E extends Comparable<E>> implements Comparable<Custom> {
-//    private Collection<? extends E> data;
-//    private E   e;
-//
-//    Custom (Object e){
-//        this.e = (E)e;
-//    }
-//
-//    @Override
-//    public int compareTo(Custom custom) {
-//        return e.compareTo((E)custom);
-//    }
-//}
 
 
 

@@ -11,7 +11,7 @@ import java.util.List;
  * @param <E>
  */
 
-public class  GenericsSortMyClass <E extends Comparable<E>, MyGenClass> {
+public class  GenericsSortMyClass <E extends Comparable<E>> {
 
     private List <E> list = new ArrayList<>();
 
@@ -27,7 +27,7 @@ public class  GenericsSortMyClass <E extends Comparable<E>, MyGenClass> {
         sort();
     }
 
-    public List<E> sort(){
+    public List sort(){
         if(list==null || list.isEmpty())
             return Collections.emptyList();
         int max = list.size();
@@ -88,6 +88,10 @@ public class  GenericsSortMyClass <E extends Comparable<E>, MyGenClass> {
 
 
 
+
+
+/*
+
 class MyGenClass implements Comparable {
     Object o;
     Integer id;
@@ -104,13 +108,13 @@ class MyGenClass implements Comparable {
         this.name = name;
         this.id = id;
     }
-    
+
 
     @Override
     public int compareTo(Object t) {
         return this.id.compareTo(((MyGenClass)t).id);
     }
-    
+
     @Override
     public boolean equals(Object o) {
         return o instanceof MyGenClass && this.equals(o);
@@ -125,8 +129,6 @@ class MyGenClass implements Comparable {
         return this.id.toString(); // + this.name.toUpperCase()
     }
 }
-
-/*
 public class  GenericsSortMyClass <E extends MyGenClass, Comparator> {
     int i=-1;
     int j=0;

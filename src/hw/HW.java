@@ -4,10 +4,9 @@
  * and open the template in the editor.
  */
 package hw;
-import java.lang.reflect.Array;
+import hw.*;
+
 import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.List;
 
 public class HW {
 
@@ -32,7 +31,7 @@ public class HW {
         System.out.println(k.karatsuba_multiplication(BigInteger.ONE, new BigInteger("123456578901234567890")));
         
         //Task04 / euclideanGCD
-        EuclideanGCD gcd = new EuclideanGCD(); 
+        EuclideanGCD gcd = new EuclideanGCD();
         System.out.println("EuclideanGCD 240,66 = " + gcd.euclideanGCD(240, 96) );
         
         //Task05 / RSA
