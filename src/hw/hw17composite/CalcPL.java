@@ -18,36 +18,22 @@ import java.util.regex.Pattern;
  *
  */
 
-
-
 public class CalcPL{  // Divide string into operators and numbers, return result
 
+    Tree tree = new Tree();
+
+    public CalcPL(String infixString) {
+        tree.insert(infixString);
+        tree.traversePostfix();
+    }
+
+    public  double getResult(){
+        return tree.getResult();
+    }
 
     public static void main(String[] args) {
-//        System.out.println(new CalcPL("(1+2)*4+5*(3+6)").getResult());
-//        String s = "1*5+(3+2)";
-//        assertEquals(10.0, new CalcPL(s).getResult(), 0.01);
-//        s = "(1+2)*4+5*(3+6)";
-//        s = "(1+2)";
-//        s = "2";
-//        s = "(5)+1+1+2";
-//        s = "5+(1)";
-//        assertEquals(6f, new CalcPL(s).getResult(), 0.01);
-//    }
-        Tree tree = new Tree();
-        //String expressionString = "1*5+(3+2)";
-        String expressionString = "(1+2)*4+5*(3+6)";         System.out.println(expressionString + " has to turn into:  12+4*536+*+ ");
-        tree.insert(expressionString);
-        tree.traversePostfix();
-        System.out.println(tree.getResult());
-
-//        System.out.println("The correct answer:" + " Postorder Traversal:-   12+4*536+*+");
-//        System.out.println("\nHas to be:\n\n(1+2)*4+5*(3+6)\n" +
-//                "*\t1<?<2\n" +
-//                "+\t2<?<1\n" +
-//                "Preorder Traversal:-    +*+124*5+36\n" +
-//                "Inorder Traversal:-     1+2*4+5*3+6\n" +
-//                "Postorder Traversal:-   12+4*536+*+");
+        System.out.println(new CalcPL("(1+2)*4+5*(3+6)").getResult());
+        System.out.println(new CalcPL("1*5+(3+2)").getResult());
 
     }
 }
@@ -168,7 +154,6 @@ class Conv{
         return m.matches();
     }
 }
-
 
 class Tree {
     private Node root;
