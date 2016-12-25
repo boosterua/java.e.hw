@@ -38,7 +38,6 @@ public class CalcPL{  // Divide string into operators and numbers, return result
     }
 }
 
-
 class Node {
     public char data;
     public Node left;
@@ -169,19 +168,18 @@ class Tree {
 
         List <Character> ss;
         Conv c = new Conv(s);
-        ss = c.infix2Postfix();                                //System.out.println(s +" >> " +ss);
+        ss = c.infix2Postfix(); /*                                System.out.println(s +" >> " +ss);  -*/
         uniQueue<Node> stack = new uniQueue<> ();
         Node newNode;
         for(char ch: ss) {
             if (ch >= '0' && ch <= '9') {
                 newNode = new Node(ch);
-                stack.push(newNode);
             } else if (ch == '+' || ch == '-' || ch == '/' || ch == '*' || ch == '^' || ch=='%'){
                 Node n1 = stack.pull();
                 Node n2 = stack.pull();
                 newNode = new Node(ch, n2, n1);
-                stack.push(newNode);
-            }
+            } else newNode = new Node(ch);
+            stack.push(newNode);
         }
         root = stack.pull();
     }
@@ -208,7 +206,6 @@ class Tree {
             }
         }
         System.out.println(record.toString());
-//        System.out.println(stk.peek());
         return stk.pop();
     }
 

@@ -1,24 +1,29 @@
 package hw.hw17;
 
 import org.junit.Rule;
-import org.junit.jupiter.api.Test;
+
+//import org.junit.jupiter.api.Test;
+import org.junit.Test;
+//import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
+
 import org.junit.rules.ExpectedException;
 
-import static org.junit.jupiter.api.Assertions.*;
+
 
 /**
  * Created by tonchief on 12/13/2016.
  */
 
-class CalcPLTest {
-    private final static String error = "java.lang.IllegalArgumentException";
-
+/*
+public class CalcPLTest {
+    private final static String error = "java.lang.ArithmeticException";
     @Rule
     public ExpectedException expectedEx = ExpectedException.none();
 
 
     @Test
-    void getResult() {
+    public void getResult() {
         String s = "";
         s = "1*5+(3+2)";
         assertEquals(10.0, new CalcPL(s).getResult(), 0.01);
@@ -35,98 +40,83 @@ class CalcPLTest {
     }
 
     @Test
-    // error = "java.lang.IllegalArgumentException";
-    void testErrors() throws Exception {
-        try {
+    // error = "java.lang.ArithmeticException";
+    public void testErrors() throws Exception {
+            expectedEx.expect(ArithmeticException.class);
            String s = "-*5+(3+2)";
             double res = new CalcPL(s).getResult();
             fail("Expected Exception, but got OK. Res=" + res);
-        } catch(Exception e){
-            assertEquals(error, e.toString());
-        }
+
    }
 
    @Test
-   void testErrors2() throws Exception {
-        String error = "java.lang.IllegalArgumentException";
-        try {
-            String s = "-1*5+(3+2)";
-            double res = new CalcPL(s).getResult();
-            fail("Expected Exception, but got OK. Res=" + res);
-        } catch(Exception e){
-            assertEquals(error, e.toString());
-        }
+   public void testErrors2() throws Exception {
+        expectedEx.expect(ArithmeticException.class);
+        String s = "-1*5+(3+2)";
+        double res = new CalcPL(s).getResult();
+        System.out.println(res);
+        fail("Expected Exception, but got OK. Res=" + res);
    }
 
    @Test
-   void testErrors3() throws Exception {
-        try {
-           String s = "2-*5+(3+2)";
-            double res = new CalcPL(s).getResult();
-            fail("Expected Exception, but got OK. Res=" + res);
-        } catch(Exception e){
-            assertEquals(error, e.toString());
-        }
+   public void testErrors3() throws Exception {
+       expectedEx.expect(ArithmeticException.class);
+       String s = "2-*5+(3+2)";
+       double res = new CalcPL(s).getResult();
+       System.out.println(res);
+       fail("Expected Exception, but got OK. Res=" + res);
    }
-   @Test
-   void testErrors4() throws Exception {
 
-        try {
-           String s = "(5+(3+2)";
-            double res = new CalcPL(s).getResult();
-            fail("Expected Exception, but got OK. Res=" + res);
-        } catch(Exception e){
-            assertEquals(error, e.toString());
-        }
+   @Test
+   public void testErrors4() throws Exception {
+
+       expectedEx.expect(ArithmeticException.class);
+       String s = "(5+(3+2)";
+       double res = new CalcPL(s).getResult();
+       System.out.println(res);
+       fail("Expected Exception, but got OK. Res=" + res);
    }
-   @Test
-   void testErrors5() throws Exception {
 
-        try {
-           String s = "5+3+2))";
-            double res = new CalcPL(s).getResult();
-            fail("Expected Exception, but got OK. Res=" + res);
-        } catch(Exception e){
-            assertEquals(error, e.toString());
-        }
+   @Test
+   public void testErrors5() throws Exception {
+       expectedEx.expect(ArithmeticException.class);
+       String s = "5+3+2))";
+       double res = new CalcPL(s).getResult();
+       System.out.println(res);
+       fail("Expected Exception, but got OK. Res=" + res);
+
    }
+
    @Test
-   void testErrors6() throws Exception {
-
-        try {
-
-           String s = "5+3+((2)";
-            double res = new CalcPL(s).getResult();
-            fail("Expected Exception, but got OK. Res=" + res);
-        } catch(Exception e){
-            assertEquals(error, e.toString());
-        }
+   public void testErrors6() throws Exception {
+        expectedEx.expect(ArithmeticException.class);
+        String s = "5+3+((2)";
+        double res = new CalcPL(s).getResult();
+        System.out.println(res);
+        fail("Expected Exception, but got OK. Res=" + res);
    }
-   @Test
-   void testErrors7() throws Exception {
 
-        try {
-
-           String s = "5+3++2";
-            double res = new CalcPL(s).getResult();
-            fail("Expected Exception, but got OK. Res=" + res);
-        } catch(Exception e){
-            assertEquals(error, e.toString());
-        }
-   }
    @Test
-   void testErrors8() {
-        try {
-            expectedEx.expect(IllegalArgumentException.class);
-            String s = "5+(1)";
+   public void testErrors7() throws Exception {
+            expectedEx.expect(ArithmeticException.class);
+            String s = "5+3++2";
             double res = new CalcPL(s).getResult();
             System.out.println(res);
             fail("Expected Exception, but got OK. Res=" + res);
-        } catch(Exception e){
-            assertEquals(error, e.toString());
-        }
-    }
+   }
+
+
+   @Test
+   public void testErrors8() throws Exception {
+           expectedEx.expect(ArithmeticException.class);
+           String s = "5+1)";
+           double res = new CalcPL(s).getResult();
+           System.out.println(res);
+           fail("Expected Exception, but got OK. Res=" + res);
+   }
 
 
 
 }
+
+*/
