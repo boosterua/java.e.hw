@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static org.junit.Assert.*;
 
 
 /**
@@ -35,7 +36,6 @@ public class CalcPL{  // Divide string into operators and numbers, return result
     }
 
     public Float getResult(){
-//        System.out.println("Final:" + numQ + operQ);
         return numQ.pull();
     }
 
@@ -66,16 +66,28 @@ public class CalcPL{  // Divide string into operators and numbers, return result
 
 
     public static void main(String[] args) {
-//        System.out.println(new CalcPL("(1+2)*4+5*(3+6)").getResult());
+        System.out.println(new CalcPL("(1+2)*4+5*(3+6)").getResult());
+        String s = "1*5+(3+2)";
+        assertEquals(10.0, new CalcPL(s).getResult(), 0.01);
+        s = "(1+2)*4+5*(3+6)";
+        assertEquals(57f, new CalcPL(s).getResult(), 0.01);
+        s = "(1+2)";
+        assertEquals(3f, new CalcPL(s).getResult(), 0.01);
+        s = "2";
+        assertEquals(2f, new CalcPL(s).getResult(), 0.01);
+        s = "(5)+1";
+        assertEquals(6f, new CalcPL(s).getResult(), 0.01);
+        s = "5+(1)";
+        assertEquals(6f, new CalcPL(s).getResult(), 0.01);
     }
+
+
 
 }
 
 class Operation   extends CalcPL   { // COMPOSITE
 
     public int eval(char oper) {
-
-//        System.out.println("Opers:"+ operQ+"; Nums:"+numQ + " \t New Operation: " + oper);
 
         if (oper == '(') {
             operQ.push(oper);
@@ -85,7 +97,7 @@ class Operation   extends CalcPL   { // COMPOSITE
                 float l = numQ.pull();
                 float r = numQ.pull();
                 numQ.push(evalOp(l, r, operQ.pull()));
-                if (operQ.isEmpty()) throw new IllegalArgumentException();
+                    if (operQ.isEmpty()) throw new ArithmeticException();
             }
             operQ.pull();
         }
@@ -101,7 +113,7 @@ class Operation   extends CalcPL   { // COMPOSITE
     }
 
     public int calcPostfix() {
-            while (!operQ.isEmpty()){  //                System.out.println("Opers:"+ operQ+"; Nums:"+numQ + " \t PF Oper: " + operQ.peek());
+            while (!operQ.isEmpty()){
                 float l = numQ.pull();
                 float r = numQ.pull();
                 numQ.push(evalOp(l, r, operQ.pull()));
@@ -110,7 +122,7 @@ class Operation   extends CalcPL   { // COMPOSITE
     }
 
     private float evalOp(float l, float r, char op) {
-//        System.out.printf("l %.2f,r %.2f,op %s\n",l,r,op);
+
         if(op=='+') return l+r;
         if(op=='-') return l-r;
         if(op=='*') return l*r;
@@ -153,20 +165,16 @@ class NumQ {
 
     public void push(Float e) {
         numbers.add(e);
-//        System.out.println(numbers);
     }
 
     public Float pull() {
-//        System.out.println(numbers);
-        if (numbers.isEmpty()) throw new IllegalArgumentException();
+        if (numbers.isEmpty()) throw new ArithmeticException();
         Float num = numbers.getLast();
         numbers.removeLast();
-//        System.out.println("Pull:"+num + " arr.left:"+numbers);
         return num;
     }
 
     public Float peek() {
-//        System.out.println(numbers + " peek="+numbers.getLast());
         return numbers.getLast();
     }
 
