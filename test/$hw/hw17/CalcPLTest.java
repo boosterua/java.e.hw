@@ -1,4 +1,4 @@
-package hw.hw17;
+package $hw.hw17;
 
 import org.junit.Rule;
 

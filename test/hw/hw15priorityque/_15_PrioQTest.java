@@ -1,10 +1,9 @@
-package hw;
+package hw.hw15priorityque;
 
-import org.junit.jupiter.api.*;
+import hw.hw15priorityque.PrioQ;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.PriorityQueue;
 
 import static org.junit.jupiter.api.Assertions.*;
 

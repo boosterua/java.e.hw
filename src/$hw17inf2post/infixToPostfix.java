@@ -1,4 +1,4 @@
-package hw.$hw17inf2post;
+package $hw17inf2post;
 import java.io.*;
 
 /**

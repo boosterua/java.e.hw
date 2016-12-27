@@ -6,6 +6,7 @@ import java.util.List;
 /**
  * Created by tonchief on 12/25/2016.
  * Pattern Memento
+ *
  * 25. Паттерн Memento. Реализовать алгоритм игры «крестики-нолики». Реализовать возможность «взять назад ход» *
  */
 
@@ -27,7 +28,7 @@ class Originator{
     private Integer[] cells;
 
     public void set(Integer[] cells){
-        this.cells = cells;
+        this.cells = cells.clone();
     }
 
     public Memento saveToMemento(){
@@ -38,6 +39,10 @@ class Originator{
         cells = m.getCells();
     }
 
+    public Integer[] getCells(){
+        return cells;
+    }
+
 }
 
 class Game { // CareTaker
@@ -46,7 +51,7 @@ class Game { // CareTaker
     private Integer[] cells;
     private Originator field = new Originator();
     private List<Memento> fieldStates = new ArrayList<>();
-
+    private int pointer = -1;
 
     public Game() {
         this.cells = new Integer[SIZE * SIZE];
@@ -57,7 +62,11 @@ class Game { // CareTaker
         checkBounds(y);
         cells[x + y * SIZE] = value;
         field.set(cells);
-        fieldStates.add(field.saveToMemento());
+        System.out.println(pointer);
+        if(++pointer >= fieldStates.size())
+            fieldStates.add(field.saveToMemento());
+        else
+            fieldStates.set(pointer, field.saveToMemento());
     }
 
     private void checkBounds(int x) {
@@ -66,17 +75,46 @@ class Game { // CareTaker
     }
 
     public void getMemento(int undoSteps) {
-        if(undoSteps > fieldStates.size())
+        if(undoSteps > pointer) // was: > fieldStates.size()
             throw new ArrayIndexOutOfBoundsException("No such state saved.");
-        field.restoreFromMemento(fieldStates.get(fieldStates.size() - undoSteps));
+        pointer -= undoSteps;
+        field.restoreFromMemento(fieldStates.get(pointer));
+            //        field.restoreFromMemento(fieldStates.get(fieldStates.size() - undoSteps-1));
+        cells = field.getCells();
+    }
+
+
+//    public void debug(){
+//        int i=0;
+//        for (Memento m : fieldStates){
+//            field.restoreFromMemento(fieldStates.get(i++));
+//            cells = field.getCells();
+//            System.out.printf(toString());
+//        }
+//    }
+
+    @Override
+    public String toString(){
+        String output="";
+        int x = 0;
+        for (Integer el: cells) {
+            if(el == null)
+                output += "[ ]";
+            else
+                output += (el == 1 ? "[X]" :  "[O]" );
+            if(++x >= SIZE) {
+                output += "\n";
+                x = 0;
+            }
+        }
+        return output +"\n";
     }
 }
 
 
-class Player { // Caretaker , Observer
-//    private Memento previousTurn;
-    private Game game = new Game();
-    private int currentPlayer ;
+public class TicTacToeGame { //
+    private static Game game = new Game();
+    private static int currentPlayer ;
 
     public void turn(int x, int y) {
         game.set(x, y, currentPlayer);
@@ -87,8 +125,23 @@ class Player { // Caretaker , Observer
         game.getMemento(-1);
     }
 
-    private void swapPlayer() {
+    private int swapPlayer() {
         currentPlayer = 1 - currentPlayer;
+        return currentPlayer;
+    }
+
+    public static void main(String[] args) {
+        TicTacToeGame g = new TicTacToeGame();
+        game.set(1,1, g.swapPlayer());
+        System.out.println(game);
+        game.set(2,2, g.swapPlayer());
+        System.out.println(game);
+        game.set(1,2, g.swapPlayer());
+        System.out.println(game);
+        game.getMemento(1);
+//        game.getMemento(1);
+        System.out.println(game);
+
     }
 
 }

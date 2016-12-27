@@ -1,4 +1,4 @@
-package hw.hw17;
+package $hw.hw17;
 
 import java.util.LinkedList;
 import java.util.regex.Matcher;

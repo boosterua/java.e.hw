@@ -4,7 +4,29 @@
  * and open the template in the editor.
  */
 package hw;
-import hw.*;
+import hw.hw0114.*;
+import hw.hw0114.*;
+
+/*
+* Current progress
+*
+* + lab1 - complete / ready to be evaluated
+* + hw17composite - complete / ready to be evaluated by AlexGalkin
+*
+* ~ hw25_ptnMemento - done, no tests
+*
+* complete & evaluated
+* 01..10, 13, 14, 15
+* TODO
+* 16 Morskoy Boi
+* 18..26 - Patterns
+* 27 Rational Rose
+* 28..32 - Trees, Threads
+* 33..38 - Threads
+*
+* LABS 2..4
+*
+* */
 
 import java.math.BigInteger;
 
